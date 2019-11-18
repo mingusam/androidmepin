@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="loginpage">LOGIN</string>
+    <string name="loginbtn">LOGIN</string>
+    <string name="registerpage">REGISTER</string>
+    <string name="registerbtn">REGISTER</string>
+    <string name="username">Username</string>
+    <string name="usernamehint">Enter Username Here</string>
+    <string name="password">Password</string>
+    <string name="passwordhint">Enter Password Here</string>
+    <string name="fname">Firstname</string>
+    <string name="fnamehint">Enter Firstname Here</string>
+    <string name="lname">Lastname</string>
+    <string name="lnamehint">Enter Lastname Here</string>
+    <string name="phone">Phonenumber</string>
+    <string name="phonehint">Enter Phonenumber Here</string>
+    <string name="email">Email Address</string>
+    <string name="emailhint">Enter Email Address Here</string>
+    <string name="idnumber">ID Number</string>
+    <string name="idnumberhint">Enter ID Number Here</string>
+    <string name="forgotpasswd">Forgot Password</string>
+    <string name="clearbtn">CLEAR</string>
+    <string name="getpass">GET PASSWORD</string>
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#334CFF</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="submitbtn">#6BDE2E</color>
+    <color name="signup">#DE0933</color>
+    <color name="forgotpassword">#F722BD</color>
+</resources>
