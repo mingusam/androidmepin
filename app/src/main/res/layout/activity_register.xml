@@ -8,7 +8,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -106,40 +106,31 @@
                 android:inputType="number"
                 android:layout_marginBottom="10dp"
                 />
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/idnumber"
-                android:textSize="20dp"
-                android:textStyle="normal"
-                android:layout_marginBottom="5dp"
-                />
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/idnumber"
-                android:hint="@string/idnumberhint"
-                android:inputType="number"
-                android:layout_marginBottom="10dp"
-                />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/registerbtn"
-                android:text="@string/registerbtn"
-                android:background="@color/submitbtn"
-                android:textStyle="bold"
-                android:layout_marginBottom="10dp"
-                />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/clearbtn"
-                android:text="@string/clearbtn"
-                android:textStyle="bold"
-                android:background="@color/signup"
-                android:layout_marginBottom="10dp"
-                />
+                android:orientation="horizontal">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/registerbtn"
+                    android:text="@string/registerbtn"
+                    android:background="@color/submitbtn"
+                    android:textStyle="bold"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="10dp"
+                    />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/clearbtn"
+                    android:text="@string/clearbtn"
+                    android:textStyle="bold"
+                    android:background="@color/signup"
+                    android:layout_marginBottom="10dp"
+                    />
+
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

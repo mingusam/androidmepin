@@ -16,7 +16,7 @@ public class ForgotPassword extends AppCompatActivity {
     private String emailtxt;
     private StringRequest request;
     private RequestQueue queue;
-    private Alerts alerts = new Alerts();
+    private Alerts alerts = new Alerts(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

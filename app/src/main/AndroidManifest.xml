@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,9 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Dashboard"
+            android:label="@string/title_activity_dashboard"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".ForgotPassword"
-            android:parentActivityName=".MainActivity"
-            android:label="Forgot Passwprd">
+            android:label="Forgot Passwprd"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.name.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -26,7 +31,8 @@
                 android:name="android.name.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:label="Welcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

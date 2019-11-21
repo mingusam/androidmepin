@@ -3,6 +3,9 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,12 +23,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Register extends AppCompatActivity {
-    private EditText fname,lname,email,password,phone,idnumber;
+    private EditText fname,lname,email,password,phone;
     private Button register,clear;
     private String fnametxt,lnametxt,emailtxt,passwordtxt,phonetxt,idnumbertxt;
     private StringRequest request;
     private RequestQueue queue;
-    private Alerts alert = new Alerts();
+    private Alerts alert = new Alerts(this);
     private Patterns pt = new Patterns();
     private String url;
     @Override
@@ -38,7 +41,6 @@ public class Register extends AppCompatActivity {
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         phone = (EditText) findViewById(R.id.phone);
-        idnumber = (EditText) findViewById(R.id.idnumber);
 
         //buttons
         register = (Button) findViewById(R.id.registerbtn);
@@ -53,43 +55,36 @@ public class Register extends AppCompatActivity {
                 emailtxt = email.getText().toString();
                 passwordtxt = password.getText().toString();
                 phonetxt = phone.getText().toString();
-                idnumbertxt = idnumber.getText().toString();
 
                 if(fnametxt.isEmpty()||lnametxt.isEmpty()||emailtxt.isEmpty()||passwordtxt.isEmpty()||
-                        phonetxt.isEmpty()||idnumbertxt.isEmpty()){
+                        phonetxt.isEmpty()){
                     String message = "Please enter all details";
-                    Toast t = Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG);
-                    t.show();
-                    //alert.showDialog(message);
+                    //Toast t = Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG);
+                    //t.show();
+                    alert.showDialog(message);
                 }
                 else if(!emailtxt.matches(pt.emailpattern)){
                     String message = "Please enter a valid email address";
-                    Toast t = Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG);
-                    t.show();
-                    //alert.showDialog(message);
+                    //Toast t = Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG);
+                    //t.show();
+                    alert.showDialog(message);
                 }
                 else if(!fnametxt.matches(pt.namepattern)||!lnametxt.matches(pt.namepattern)){
                     String message = "Please enter a valid name";
-                    Toast t = Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG);
-                    t.show();
-                    //alert.showDialog(message);
-                }
-                else if(idnumbertxt.length()>9||idnumbertxt.length()<7){
-                    String message = "Your ID number is invalid. The length should be between 7 and 9 characters";
-                    Toast t = Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG);
-                    t.show();
-                    //alert.showDialog(message);
+                    //Toast t = Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG);
+                    //t.show();
+                    alert.showDialog(message);
                 }
                 else if(!passwordtxt.matches(pt.passwordpattern)){
                     String message = "Minimum password length should be atleast 6 characters and a maximum of" +
                             "10 characters. The password should have at least one lowercase letter and at least one uppercase letter";
-                    Toast t = Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG);
-                    t.show();
-                    //alert.showDialog(message);
+                    //Toast t = Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG);
+                    //t.show();
+                    alert.showDialog(message);
                 }
                 else{
                     //register
-                    adduser(fnametxt,lnametxt,emailtxt,passwordtxt,phonetxt,idnumbertxt);
+                    adduser(fnametxt,lnametxt,emailtxt,passwordtxt,phonetxt);
                 }
             }
         });
@@ -101,12 +96,11 @@ public class Register extends AppCompatActivity {
                 email.setText("");
                 password.setText("");
                 phone.setText("");
-                idnumber.setText("");
             }
         });
     }
     private void adduser(final String fnametxt,final String lnametxt,final String emailtxt,final String passwordtxt,
-                         final String phonetxt,final String idnumbertxt){
+                         final String phonetxt){
         url = AppConfig.register;
         queue = new Volley().newRequestQueue(getApplicationContext());
         final ProgressDialog pd = new ProgressDialog(this);
@@ -119,15 +113,11 @@ public class Register extends AppCompatActivity {
             public void onResponse(String response) {
                 if(response.equalsIgnoreCase("true")){
                     String message = "You have registered successfully";
-                    Toast t = Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG);
-                    t.show();
-                    //alert.showDialog(message);
+                    alert.showDialog(message);
                 }
                 else{
-                    String message = "A user with this ID Number already exists";
-                    Toast t = Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG);
-                    t.show();
-                    //alert.showDialog(message);
+                    String message = "A user with that Email Address already exists";
+                    alert.showDialog(message);
                 }
                 pd.hide();
             }
@@ -135,9 +125,9 @@ public class Register extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 String message = error.toString();
-                Toast t = Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG);
-                t.show();
-                //alert.showDialog(message);
+                //Toast t = Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG);
+                //t.show();
+                alert.showDialog(message);
                 pd.hide();
             }
         }){
@@ -149,7 +139,6 @@ public class Register extends AppCompatActivity {
                 params.put("email",emailtxt);
                 params.put("password",passwordtxt);
                 params.put("phone",phonetxt);
-                params.put("idnumber",idnumbertxt);
                 return params;
             }
 

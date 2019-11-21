@@ -3,7 +3,9 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private Patterns pt = new Patterns();
     private String TAG = "LOGIN";
     private String emailtxt,passwordtxt;
-    private Alerts alert = new Alerts();
+    private Alerts alert = new Alerts(this);
     private String url;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,22 +67,22 @@ public class MainActivity extends AppCompatActivity {
 
                 if(emailtxt.isEmpty()||passwordtxt.isEmpty()){
                     String message = "Please Enter all details";
-                    Toast t = Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG);
-                    t.show();
-                    //alert.showDialog(message);
+                    //Toast t = Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG);
+                   // t.show();
+                    alert.showDialog(message);
                 }
                 else if(!emailtxt.matches(pt.emailpattern)){
                     String message = "Please enter a valid email address";
-                    Toast t = Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG);
-                    t.show();
-                    //alert.showDialog(message);
+                    //Toast t = Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG);
+                    //t.show();
+                    alert.showDialog(message);
                 }
                 else if(!passwordtxt.matches(pt.passwordpattern)){
                     String message = "Minimum password length should be atleast 6 characters and a maximum of" +
                             "10 characters. The password should have at least one lowercase letter and at least one uppercase letter";
-                    Toast t = Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG);
-                    t.show();
-                    //alert.showDialog(message);
+                    //Toast t = Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG);
+                   // t.show();
+                    alert.showDialog(message);
                 }
                 else{
                     //log in
@@ -103,14 +105,18 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 if (response.equalsIgnoreCase("true")) {
                     Log.d(TAG,"Login successfull");
-                    Toast t = Toast.makeText(getApplicationContext(),"Login successfull",Toast.LENGTH_SHORT);
-                    t.show();
+                    SharedPreferences pref = getSharedPreferences("User", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("Email",emailtxt);
+                    editor.apply();
+                    Intent intent = new Intent(getApplicationContext(),Dashboard.class);
+                    startActivity(intent);
                 }
                 else{
                     String message = "Invalid email/password.Please try again";
-                    Toast t = Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG);
-                    t.show();
-                    //alert.showDialog(message);
+                    //Toast t = Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG);
+                    //t.show();
+                    alert.showDialog(message);
                 }
                 pd.hide();
             }
@@ -118,9 +124,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 String message = error.toString();
-                Toast t = Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG);
-                t.show();
-                //alert.showDialog(message);
+                //Toast t = Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG);
+                //t.show();
+                alert.showDialog(message);
                 pd.hide();
             }
         }){

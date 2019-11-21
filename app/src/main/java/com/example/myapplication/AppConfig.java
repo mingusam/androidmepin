@@ -10,5 +10,14 @@ public class AppConfig {
     //login url
     public static String forgotpassword = baseurl+"/auth";
 
+    //
+    public static String profile = baseurl+"/login";
+
+    public static String addbiz = baseurl+"/business";
+
+    public static String stkpush = baseurl+"/lnmpcontroller";
+
+
+
 
 }

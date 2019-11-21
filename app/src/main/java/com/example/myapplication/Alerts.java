@@ -6,6 +6,9 @@ import android.content.DialogInterface;
 
 public class Alerts {
     Context ctxt;
+    public Alerts(Context ctxt){
+        this.ctxt = ctxt;
+    }
     public void showDialog(String message){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ctxt);
         alertDialogBuilder.setMessage(message);
