@@ -54,4 +54,10 @@
     <string name="descriptionhint">Enter Description Here</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="viewresult">Lipa Result</string>
+    <string name="mpesareceiptno">MPESA Receipt Number</string>
+    <string name="close">CLOSE</string>
+    <string name="resultdesc">Result Description</string>
+    <string name="response">Response</string>
+    <string name="merchantid">Merchant ID</string>
 </resources>

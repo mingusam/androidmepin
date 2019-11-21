@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/nav_transactions"
-        android:name="com.example.myapplication.ui.slideshow.SlideshowFragment"
+        android:name="com.example.myapplication.ui.send.SendFragment"
         android:label="@string/menu_transactions"
         tools:layout="@layout/fragment_transactions" />
 

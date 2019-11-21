@@ -17,7 +17,7 @@ public class AppConfig {
 
     public static String stkpush = baseurl+"/lnmpcontroller";
 
-
+    public static String getshortcode = baseurl+"/business";
 
 
 }
